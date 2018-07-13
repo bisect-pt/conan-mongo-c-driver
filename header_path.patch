@@ -1,0 +1,26 @@
+diff --git a/src/libbson/CMakeLists.txt b/src/libbson/CMakeLists.txt
+index f71933d..6eb4436 100644
+--- a/src/libbson/CMakeLists.txt
++++ b/src/libbson/CMakeLists.txt
+@@ -282,7 +282,7 @@ if (ENABLE_EXAMPLES)
+ endif () # ENABLE_EXAMPLES
+ 
+ set (BSON_HEADER_INSTALL_DIR
+-   "${CMAKE_INSTALL_INCLUDEDIR}/libbson-${BSON_API_VERSION}"
++   "${CMAKE_INSTALL_INCLUDEDIR}"
+ )
+ 
+ install (
+diff --git a/src/libmongoc/CMakeLists.txt b/src/libmongoc/CMakeLists.txt
+index 0f4737b..90408ef 100644
+--- a/src/libmongoc/CMakeLists.txt
++++ b/src/libmongoc/CMakeLists.txt
+@@ -857,7 +857,7 @@ if (MONGOC_ENABLE_STATIC)
+ endif ()
+ 
+ set (MONGOC_HEADER_INSTALL_DIR
+-   "${CMAKE_INSTALL_INCLUDEDIR}/libmongoc-${MONGOC_API_VERSION}"
++   "${CMAKE_INSTALL_INCLUDEDIR}"
+ )
+ 
+ install (

@@ -1,3 +1,9 @@
-# conan-mongo-c-driver
+## Bisect's conan-mongo-c-driver
 
-[![Build Status](https://travis-ci.org/DEGoodmanWilson/conan-mongo-c-driver.svg?branch=stable%2F6.1.1)](https://travis-ci.org/DEGoodmanWilson/conan-mongo-c-driver)
+**Conan Package for [Mongo-C-Driver](https://github.com/mongodb/mongo-c-driver)**
+
+## Conan.io Information
+
+Please add bisect remote: `conan remote add bisect https://api.bintray.com/conan/bisect/bisect` in order tu use this package.
+
+[Bisect Public Conan repository on Bintray](https://bintray.com/bisect/bisect).
