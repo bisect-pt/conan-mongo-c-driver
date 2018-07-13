@@ -2,7 +2,6 @@ env:
    global:
      - CONAN_USERNAME: "bisect"
      - CONAN_LOGIN_USERNAME: "promgamer"
-     - CONAN_CHANNEL: "stable"
      - CONAN_UPLOAD: "https://api.bintray.com/conan/bisect/bisect"
      - CONAN_STABLE_BRANCH_PATTERN: "stable/*"
 
