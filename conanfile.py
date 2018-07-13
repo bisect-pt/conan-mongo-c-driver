@@ -10,7 +10,7 @@ class MongoCDriverConan(ConanFile):
     description = "A high-performance MongoDB driver for C"
     url = "https://github.com/mongodb/mongo-c-driver"
     license = "https://github.com/mongodb/mongo-c-driver/blob/{0}/COPYING".format(version)
-    settings =  "os", "compiler", "arch", "build_type"
+    settings = "os", "compiler", "arch", "build_type"
     options = {"shared": [True, False]}
     default_options = "shared=False"
     requires = 'zlib/[~=1.2]@conan/stable'
@@ -34,7 +34,6 @@ class MongoCDriverConan(ConanFile):
 
     def build(self):
         if self.settings.compiler == 'Visual Studio':
-            # self.build_vs()
             self.output.fatal("No windows support yet. Sorry. Help a fellow out and contribute back?")
 
         cmake = CMake(self)
