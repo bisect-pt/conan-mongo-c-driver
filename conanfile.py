@@ -11,8 +11,6 @@ class MongoCDriverConan(ConanFile):
     url = "https://github.com/mongodb/mongo-c-driver"
     license = "https://github.com/mongodb/mongo-c-driver/blob/{0}/COPYING".format(version)
     settings = "os", "compiler", "arch", "build_type"
-    options = {"shared": [True, False]}
-    default_options = "shared=True"
     requires = 'zlib/[~=1.2]@conan/stable'
     exports_sources = ["Find*.cmake", "header_path.patch"]
     source_subfolder = "source_subfolder"
@@ -37,15 +35,11 @@ class MongoCDriverConan(ConanFile):
             self.output.fatal("No windows support yet. Sorry. Help a fellow out and contribute back?")
 
         cmake = CMake(self)
-        cmake.definitions["ENABLE_STATIC"] = "OFF" if self.options.shared else "ON"
+        cmake.definitions["ENABLE_STATIC"] = "OFF" # static not supported yet... waiting for a PR
         cmake.definitions["ENABLE_TESTS"] = False
         cmake.definitions["ENABLE_EXAMPLES"] = False
         cmake.definitions["ENABLE_AUTOMATIC_INIT_AND_CLEANUP"] = False
         cmake.definitions["ENABLE_BSON"] = "ON"
-
-        if self.settings.os != 'Windows':
-            cmake.definitions['CMAKE_POSITION_INDEPENDENT_CODE'] = True
-            #cmake.definitions['CMAKE_POSITION_INDEPENDENT_CODE'] = self.options.fPIC
 
         cmake.configure(build_folder=self.build_subfolder, source_folder=self.source_subfolder)
         cmake.build()
