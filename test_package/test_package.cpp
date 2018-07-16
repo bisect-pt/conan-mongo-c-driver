@@ -6,6 +6,11 @@
 
 int main()
 {
+    mongoc_init();
+    mongoc_client_t *client = NULL;
+
+    mongoc_cleanup ();
+
     std::cout << "It works!\n";
     return EXIT_SUCCESS;
 }

@@ -12,7 +12,7 @@ class MongoCDriverConan(ConanFile):
     license = "https://github.com/mongodb/mongo-c-driver/blob/{0}/COPYING".format(version)
     settings = "os", "compiler", "arch", "build_type"
     options = {"shared": [True, False]}
-    default_options = "shared=False"
+    default_options = "shared=True"
     requires = 'zlib/[~=1.2]@conan/stable'
     exports_sources = ["Find*.cmake", "header_path.patch"]
     source_subfolder = "source_subfolder"
@@ -57,7 +57,7 @@ class MongoCDriverConan(ConanFile):
         # cmake installs all the files
 
     def package_info(self):
-        self.cpp_info.libs = ["bson-1.0", "mongoc-1.0"] if self.options.shared else ["bson-static-1.0", "mongoc-static-1.0"]
+        self.cpp_info.libs = tools.collect_libs(self)
 
         if tools.os_info.is_macos:
             self.cpp_info.exelinkflags = ['-framework CoreFoundation', '-framework Security']
