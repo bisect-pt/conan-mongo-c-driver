@@ -41,6 +41,9 @@ class MongoCDriverConan(ConanFile):
         cmake.definitions["ENABLE_AUTOMATIC_INIT_AND_CLEANUP"] = False
         cmake.definitions["ENABLE_BSON"] = "ON"
 
+        if self.settings.os != 'Windows':
+            cmake.definitions['CMAKE_POSITION_INDEPENDENT_CODE'] = True
+
         cmake.configure(build_folder=self.build_subfolder, source_folder=self.source_subfolder)
         cmake.build()
         cmake.install()
