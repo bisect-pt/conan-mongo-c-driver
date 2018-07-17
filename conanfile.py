@@ -22,7 +22,7 @@ class MongoCDriverConan(ConanFile):
 
     def requirements(self):
         if not tools.os_info.is_macos and not tools.os_info.is_windows:
-            self.requires.add("OpenSSL/1.0.2n@conan/stable")
+            self.requires.add("OpenSSL/1.0.2o@conan/stable")
 
     def source(self):
         tools.get("https://github.com/mongodb/mongo-c-driver/releases/download/{0}/mongo-c-driver-{0}.tar.gz".format(self.version))
