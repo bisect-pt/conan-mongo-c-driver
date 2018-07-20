@@ -12,9 +12,10 @@ class MongoCDriverConan(ConanFile):
     license = "https://github.com/mongodb/mongo-c-driver/blob/{0}/COPYING".format(version)
     settings = "os", "compiler", "arch", "build_type"
     requires = 'zlib/[~=1.2]@conan/stable'
-    exports_sources = ["Find*.cmake", "header_path.patch"]
+    exports_sources = ["Find*.cmake", "header_path.patch", "CMakeLists.txt"]
     source_subfolder = "source_subfolder"
     build_subfolder = "build_subfolder"
+    generators = "cmake"
 
     def configure(self):
         # Because this is pure C
@@ -41,7 +42,7 @@ class MongoCDriverConan(ConanFile):
         if self.settings.os != 'Windows':
             cmake.definitions['CMAKE_POSITION_INDEPENDENT_CODE'] = True
 
-        cmake.configure(build_folder=self.build_subfolder, source_folder=self.source_subfolder)
+        cmake.configure(build_folder=self.build_subfolder)
         cmake.build()
         cmake.install()
 
@@ -53,10 +54,5 @@ class MongoCDriverConan(ConanFile):
     def package_info(self):
         self.cpp_info.libs = tools.collect_libs(self)
 
-        if tools.os_info.is_macos:
-            self.cpp_info.exelinkflags = ['-framework CoreFoundation', '-framework Security']
-            self.cpp_info.sharedlinkflags = self.cpp_info.exelinkflags
         if tools.os_info.is_linux:
-            self.cpp_info.libs.append("rt")
-        if not tools.os_info.is_windows:
-            self.cpp_info.libs.append("pthread")
+            self.cpp_info.libs.extend(["rt", "ssl", "crypto", "dl", "pthread"])
