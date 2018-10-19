@@ -1,5 +1,7 @@
 ## Bisect's conan-mongo-c-driver
 
+**Important:** This package has been ported to [bincrafters' conan-mongo-c-driver](https://github.com/bincrafters/conan-mongo-c-driver).
+
 **Conan Package for [Mongo-C-Driver](https://github.com/mongodb/mongo-c-driver)**
 
 | Bintray | Windows | Linux | macOS | 
